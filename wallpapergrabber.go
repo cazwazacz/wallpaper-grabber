@@ -17,15 +17,14 @@ func main() {
 	soup.Header("User-Agent", userAgentString)
 
 	resp, err := soup.Get(redditWallpaperEndpoint)
-
 	if err != nil {
 		fmt.Println("Error making request")
 		return
 	}
 
 	doc := soup.HTMLParse(resp)
-
 	wallpaperPath := doc.Find("div", "class", "thing").Attrs()["data-url"]
+
 	DownloadFile(wallpaperPath)
 }
 
